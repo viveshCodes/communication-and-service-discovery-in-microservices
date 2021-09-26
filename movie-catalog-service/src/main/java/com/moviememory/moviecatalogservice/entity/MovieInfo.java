@@ -6,6 +6,7 @@ public class MovieInfo {
     private String movieDescription;
 
     //Constructors
+
     public MovieInfo() {
     }
 

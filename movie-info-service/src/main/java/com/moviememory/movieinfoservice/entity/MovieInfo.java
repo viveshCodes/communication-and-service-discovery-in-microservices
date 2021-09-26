@@ -6,8 +6,7 @@ public class MovieInfo {
     private String movieName;
     private String movieDescription;
 
-    //Constructors
-    /*Ensure we create an empty constructor for Spring to marcel the object */
+    // Constructors
     public MovieInfo() {
     }
 

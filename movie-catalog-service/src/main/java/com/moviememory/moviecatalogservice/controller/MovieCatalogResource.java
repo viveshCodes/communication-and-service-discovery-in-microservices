@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 
 import java.util.Arrays;
@@ -20,7 +21,11 @@ import java.util.stream.Collectors;
 public class MovieCatalogResource {
 
     @Autowired
-    RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private WebClient.Builder webClientBuilder;
+
      /**
       * DES: Get Details and ratings of movies rated by user
       * Scope: Public
@@ -38,6 +43,13 @@ public class MovieCatalogResource {
 
         return ratings.stream().map(rating->{
             MovieInfo movie = restTemplate.getForObject(sourceUrl+ rating.getMovieId(),MovieInfo.class);
+         /* MovieInfo movie = webClientBuilder.build()
+                   .get()
+                   .uri(sourceUrl+rating.getMovieId())
+                   .retrieve()
+                   .bodyToMono(MovieInfo.class)
+                   .block();
+         */
             return new MovieCatalog(movie.getMovieName(),movie.getMovieDescription(), rating.getRating());
         }).collect(Collectors.toList());
     }
