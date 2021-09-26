@@ -3,6 +3,7 @@ package com.moviememory.moviecatalogservice.controller;
 import com.moviememory.moviecatalogservice.entity.MovieCatalog;
 import com.moviememory.moviecatalogservice.entity.MovieInfo;
 import com.moviememory.moviecatalogservice.entity.RatingData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 @RestController
 public class MovieCatalogResource {
 
+    @Autowired
+    RestTemplate restTemplate = new RestTemplate();
      /**
       * DES: Get Details and ratings of movies rated by user
       * Scope: Public
@@ -25,7 +28,6 @@ public class MovieCatalogResource {
     @GetMapping("/catalog/{userId}")
     public List<MovieCatalog> getMovieCatalog(@PathVariable("userId") String userId){
 
-        RestTemplate restTemplate = new RestTemplate();
         // Step 1:Get all rated movies Ids
         List<RatingData> ratings = Arrays.asList(
                 new RatingData("MI02",8.1),
