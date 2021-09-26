@@ -12,9 +12,9 @@ import java.util.List;
 public class MovieInfoResource {
 
     @GetMapping("/movies/{movieId}")
-    public List<MovieInfo> getMovieInfo(@PathVariable String movieId){
-        return Collections.singletonList(
-                new MovieInfo("JM01","Jerry Maguire")
-        );
+    public MovieInfo getMovieInfo(@PathVariable String movieId){
+        return
+                new MovieInfo("JM01","Jerry Maguire", "Jerry Maguire is a 1996 classic starring Tom Cruise, Renee Zellweger, and Cuba Gooding Junior.")
+       ;
     }
 }

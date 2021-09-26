@@ -5,7 +5,7 @@ public class MovieCatalog {
 
     private String movieName;
     private String movieDescription;
-     private int movieRating;
+    private double movieRating;
 
     // Constructors
 
@@ -13,7 +13,7 @@ public class MovieCatalog {
     public MovieCatalog() {
     }
 
-    public MovieCatalog(String movieName, String movieDescription, int movieRating) {
+    public MovieCatalog(String movieName, String movieDescription, double movieRating) {
         this.movieName = movieName;
         this.movieDescription = movieDescription;
         this.movieRating = movieRating;
@@ -29,7 +29,7 @@ public class MovieCatalog {
         return movieDescription;
     }
 
-    public int getMovieRating() {
+    public double getMovieRating() {
         return movieRating;
     }
 
@@ -44,7 +44,7 @@ public class MovieCatalog {
         this.movieDescription = movieDescription;
     }
 
-    public void setMovieRating(int movieRating) {
+    public void setMovieRating(double movieRating) {
         this.movieRating = movieRating;
     }
 }

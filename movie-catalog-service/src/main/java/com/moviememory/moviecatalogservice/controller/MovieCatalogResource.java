@@ -1,13 +1,18 @@
 package com.moviememory.moviecatalogservice.controller;
 
 import com.moviememory.moviecatalogservice.entity.MovieCatalog;
+import com.moviememory.moviecatalogservice.entity.MovieInfo;
+import com.moviememory.moviecatalogservice.entity.RatingData;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -19,9 +24,19 @@ public class MovieCatalogResource {
       */
     @GetMapping("/catalog/{userId}")
     public List<MovieCatalog> getMovieCatalog(@PathVariable("userId") String userId){
-        System.out.println(userId);
-        return Collections.singletonList(
-                new MovieCatalog("Jerry Maguire", "Jerry Maguire is a 1996 American romantic comedy-drama sports film written, produced, and directed by Cameron Crowe, and stars Tom Cruise", 7)
+
+        RestTemplate restTemplate = new RestTemplate();
+        // Step 1:Get all rated movies Ids
+        List<RatingData> ratings = Arrays.asList(
+                new RatingData("MI02",8.1),
+                new RatingData("JR03",7.8)
+
         );
+        String sourceUrl = "http://localhost:8082/movies/";
+
+        return ratings.stream().map(rating->{
+            MovieInfo movie = restTemplate.getForObject(sourceUrl+ rating.getMovieId(),MovieInfo.class);
+            return new MovieCatalog(movie.getMovieName(),movie.getMovieDescription(), rating.getRating());
+        }).collect(Collectors.toList());
     }
 }

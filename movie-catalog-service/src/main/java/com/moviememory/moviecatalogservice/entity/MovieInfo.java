@@ -1,7 +1,6 @@
-package com.moviememory.movieinfoservice.entity;
+package com.moviememory.moviecatalogservice.entity;
 
 public class MovieInfo {
-
     private String movieId;
     private String movieName;
     private String movieDescription;
