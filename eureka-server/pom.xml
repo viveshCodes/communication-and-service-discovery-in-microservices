@@ -23,6 +23,8 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 
+		<!--Dependency for service discovery-->
+
 		<!--For Java version >=11, we need dependencies for jaxb-->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
