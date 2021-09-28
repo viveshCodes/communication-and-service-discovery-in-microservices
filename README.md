@@ -20,7 +20,8 @@ The goal of the project is to understand communication and discovery of microser
     - Folder to look: movie-info-service
 
 ## Eureka Server
-    - Folder to look: eureka-server
+    Folder to look: eureka-server
+     
 ## Technology Used:
 - Java
 - Spring Boot
