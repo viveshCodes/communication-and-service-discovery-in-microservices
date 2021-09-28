@@ -30,8 +30,8 @@ public class MovieCatalogResource {
     @GetMapping("/catalog/{userId}")
     public List<MovieCatalog> getMovieCatalog(@PathVariable("userId") String userId){
 
-        String movieInfoSourceUrl = "http://localhost:8082/movies/";
-        String ratingSourceUrl = "http://localhost:8083/users/";
+        String movieInfoSourceUrl = "http://movie-info-service/movies/";
+        String ratingSourceUrl = "http://rating-data-service/users/";
 
         //Get all rated movies Ids
         UserRating ratings = restTemplate.getForObject(ratingSourceUrl + userId,UserRating.class);
